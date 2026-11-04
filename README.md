@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Reel Reference Studio
+
+hey buddy i give u new project refrecne video make deto copy of this - https://www.instagram.com/reels/Db5Yv8DIMlI/ and also i give u file to make changes and polish this files for client .
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://reel-reference-studio.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/8e449b38-a2c5-487b-8327-b4f2b444089d).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
