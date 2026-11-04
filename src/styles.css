@@ -142,3 +142,95 @@
     color: var(--color-foreground);
   }
 }
+
+/* ===== Chíl by Penguin design system ===== */
+@theme inline {
+  --font-display: "Unbounded", system-ui, sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --color-flavor: var(--flavor);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-night: var(--night);
+}
+:root {
+  --flavor: oklch(0.6 0.22 290);
+  --night: oklch(0.11 0.015 260);
+  --ink: oklch(0.97 0.01 250);
+  --mute: oklch(0.72 0.03 250);
+  --glass: oklch(1 0 0 / 6%);
+  --glass-line: oklch(1 0 0 / 18%);
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in: cubic-bezier(0.6, 0, 0.8, 0.2);
+  --background: var(--night);
+  --foreground: var(--ink);
+  --card: oklch(0.15 0.02 260);
+  --card-foreground: var(--ink);
+  --primary: var(--flavor);
+  --primary-foreground: var(--night);
+  --muted: oklch(0.18 0.02 260);
+  --muted-foreground: var(--mute);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: var(--flavor);
+  color-scheme: dark;
+}
+@property --flavor { syntax: "<color>"; inherits: true; initial-value: oklch(0.6 0.22 290); }
+html { scroll-behavior: smooth; overflow-x: hidden; transition: --flavor 1.1s ease; }
+body { font-family: var(--font-sans); overflow-x: hidden; }
+
+@utility font-display { font-family: var(--font-display); }
+@utility glass { background: var(--glass); border: 1px solid var(--glass-line); backdrop-filter: blur(8px); }
+@utility pill { border-radius: 999px; border: 1px solid var(--glass-line); background: var(--glass); backdrop-filter: blur(8px); transition: background .25s, color .25s, border-color .25s; &:hover { background: var(--flavor); color: var(--night); border-color: var(--flavor); } }
+@utility btn-flavor { border-radius: 999px; background: var(--flavor); color: var(--night); font-weight: 700; box-shadow: 0 10px 40px -8px color-mix(in oklab, var(--flavor) 70%, transparent); transition: transform .25s var(--ease-out), box-shadow .25s; &:hover { transform: translateY(-2px); box-shadow: 0 16px 50px -8px var(--flavor); } }
+@utility text-flavor-glow { color: var(--flavor); text-shadow: 0 0 30px color-mix(in oklab, var(--flavor) 50%, transparent); }
+
+/* hero scene */
+.hero-glow { background:
+  radial-gradient(ellipse 26% 40% at 50% 46%, color-mix(in oklab, var(--flavor) 85%, white 5%), transparent 70%),
+  radial-gradient(ellipse 55% 60% at 50% 50%, color-mix(in oklab, var(--flavor) 35%, transparent), transparent 75%),
+  var(--night); }
+.hero-rocks { -webkit-mask-image: linear-gradient(transparent, #000 25%); mask-image: linear-gradient(transparent, #000 25%); }
+.hero-rocks-tint { background: linear-gradient(to top, transparent 20%, color-mix(in oklab, var(--flavor) 45%, transparent)); mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(transparent, #000 25%); mask-image: linear-gradient(transparent, #000 25%); }
+.hero-vignette { background: radial-gradient(ellipse at 50% 45%, transparent 45%, oklch(0 0 0 / 70%)); }
+.ghost-text { color: transparent; background: linear-gradient(90deg, oklch(1 0 0 / 2%), color-mix(in oklab, var(--flavor) 22%, oklch(1 0 0 / 10%)), oklch(1 0 0 / 2%)); -webkit-background-clip: text; background-clip: text; }
+.can-shadow { background: radial-gradient(ellipse, oklch(0 0 0 / 80%), transparent 70%); }
+.can-shine { background: linear-gradient(100deg, transparent 30%, oklch(1 0 0 / 22%) 45%, transparent 55%); mix-blend-mode: overlay; }
+.can-mask { -webkit-mask-image: linear-gradient(#000 88%, transparent); mask-image: linear-gradient(#000 88%, transparent); }
+.flavor-wash { background: radial-gradient(circle at var(--wx, 50%) 50%, var(--flavor), transparent 60%); }
+
+/* choreography: --dir = 1 (next) or -1 (prev) */
+.anim-can-in { animation: canIn 1.1s var(--ease-out) both; }
+.anim-can-out { animation: canOut .5s var(--ease-in) both; }
+.anim-ghost-in { animation: ghostIn 1.2s var(--ease-out) both; }
+.anim-ghost-out { animation: ghostOut .5s var(--ease-in) both; }
+.anim-fruit-in { animation: fruitIn 1.2s var(--ease-out) both; animation-delay: var(--d, 0s); }
+.anim-fruit-out { animation: fruitOut .5s var(--ease-in) both; }
+.anim-copy-in { animation: copyIn .8s var(--ease-out) both; animation-delay: var(--d, .35s); }
+.anim-copy-out { animation: copyOut .4s var(--ease-in) both; }
+.anim-wash { animation: wash 1.3s ease-out both; }
+.anim-rocks { animation: rocks 1.4s var(--ease-out) both; }
+.float { animation: float var(--t, 6s) ease-in-out infinite; animation-delay: var(--fd, 0s); }
+.can-bob { animation: bob 5s ease-in-out infinite; }
+.spin-slow { animation: spin var(--t, 20s) linear infinite; }
+
+@keyframes canIn { 0% { opacity: 0; transform: translate3d(calc(var(--dir) * -60vw), 6vh, 0) rotate(calc(var(--dir) * -22deg)) scale(.75); filter: blur(16px); } 65% { opacity: 1; transform: translate3d(calc(var(--dir) * 1.5vw), 0, 0) rotate(calc(var(--dir) * 3deg)) scale(1.02); filter: blur(0); } 100% { transform: none; } }
+@keyframes canOut { to { opacity: 0; transform: translate3d(calc(var(--dir) * 45vw), -4vh, 0) rotate(calc(var(--dir) * 18deg)) scale(.8); filter: blur(14px); } }
+@keyframes ghostIn { from { opacity: 0; transform: translateX(calc(var(--dir) * -30vw)); filter: blur(20px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes ghostOut { to { opacity: 0; transform: translateX(calc(var(--dir) * 30vw)); filter: blur(20px); } }
+@keyframes fruitIn { from { opacity: 0; transform: translate3d(calc(var(--dir) * -70vw), 20vh, 0) rotate(calc(var(--dir) * -320deg)) scale(.3); filter: blur(10px); } to { opacity: 1; transform: none; filter: blur(var(--blur, 0px)); } }
+@keyframes fruitOut { to { opacity: 0; transform: translate3d(calc(var(--dir) * 60vw), -20vh, 0) rotate(calc(var(--dir) * 260deg)) scale(.4); } }
+@keyframes copyIn { from { opacity: 0; transform: translateY(18px); filter: blur(8px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes copyOut { to { opacity: 0; transform: translateY(-12px); filter: blur(6px); } }
+@keyframes wash { 0% { opacity: 0; transform: translateX(calc(var(--dir) * -60%)) scaleX(.6); } 30% { opacity: .55; } 100% { opacity: 0; transform: translateX(calc(var(--dir) * 60%)) scaleX(1.6); } }
+@keyframes rocks { from { transform: translateX(calc(var(--dir) * -3vw)) scale(1.06); filter: brightness(1.8) blur(4px); } to { transform: none; filter: none; } }
+@keyframes float { 50% { transform: translate3d(0, -18px, 0) rotate(8deg); } }
+@keyframes bob { 50% { transform: translateY(-12px); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes reveal { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+.reveal { opacity: 0; }
+.reveal.is-in { animation: reveal .9s var(--ease-out) both; animation-delay: var(--d, 0s); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; }
+}
