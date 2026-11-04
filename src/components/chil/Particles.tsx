@@ -25,7 +25,7 @@ export function Particles({ burstKey, dir, color }: { burstKey: number; dir: num
     };
     resize();
     const ro = new ResizeObserver(resize); ro.observe(cv);
-    const io = new IntersectionObserver(([e]) => e && { visible = e.isIntersecting; if (visible && !raf) loop(); });
+    const io = new IntersectionObserver(([e]) => { visible = !!e?.isIntersecting; if (visible && !raf) loop(); });
     io.observe(cv);
     function loop() {
       raf = 0;
