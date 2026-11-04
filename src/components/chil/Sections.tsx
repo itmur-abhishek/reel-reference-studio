@@ -15,7 +15,7 @@ function Reveal({ children, d = 0, className = "" }: { children: ReactNode; d?: 
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current!;
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("is-in"); io.disconnect(); } }, { threshold: 0.15 });
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { el.classList.add("is-in"); io.disconnect(); } }, { threshold: 0.15 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
@@ -72,7 +72,7 @@ export function FlavourGrid({ active, onPick }: { active: number; onPick: (i: nu
 }
 
 export function ProductDetails({ index }: { index: number }) {
-  const f = FLAVORS[index];
+  const f = FLAVORS[index]!;
   return (
     <section className="relative overflow-hidden border-y border-border py-28">
       <div aria-hidden className="absolute -left-40 top-1/2 h-[520px] w-[520px] -translate-y-1/2 rounded-full opacity-30 blur-3xl" style={{ background: "var(--flavor)" }} />
@@ -133,8 +133,8 @@ export function Order({ index, onPick }: { index: number; onPick: (i: number) =>
     const name = String(d.get("name") || "").trim();
     const contact = String(d.get("contact") || "").trim();
     if (!name || !contact) { toast.error("Please add your name and a phone or email."); return; }
-    const body = `Hi Chíl team,\n\nI'd like to order:\n${qty} x Chíl ${FLAVORS[index].name}\n\nName: ${name}\nContact: ${contact}\nNotes: ${d.get("notes") || "-"}`;
-    window.location.href = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(`Order: ${qty} x ${FLAVORS[index].name}`)}&body=${encodeURIComponent(body)}`;
+    const body = `Hi Chíl team,\n\nI'd like to order:\n${qty} x Chíl ${FLAVORS[index]!.name}\n\nName: ${name}\nContact: ${contact}\nNotes: ${d.get("notes") || "-"}`;
+    window.location.href = `mailto:${ORDER_EMAIL}?subject=${encodeURIComponent(`Order: ${qty} x ${FLAVORS[index]!.name}`)}&body=${encodeURIComponent(body)}`;
     toast.success("Opening your email app with the order ready to send.");
   };
   return (
@@ -145,7 +145,7 @@ export function Order({ index, onPick }: { index: number; onPick: (i: number) =>
           <Eyebrow>Order</Eyebrow>
           <h2 className="font-display text-3xl font-bold sm:text-5xl">Get Chíl delivered.</h2>
           <p className="mt-5 max-w-sm text-mute">Choose your flavour and quantity. We’ll get back to you to confirm availability and delivery.</p>
-          <img key={FLAVORS[index].can} src={FLAVORS[index].can} alt={`Chíl ${FLAVORS[index].name} can`} loading="lazy" width={240} height={474} className="can-mask anim-copy-in mt-10 hidden h-64 w-auto md:block" />
+          <img key={FLAVORS[index]!.can} src={FLAVORS[index]!.can} alt={`Chíl ${FLAVORS[index]!.name} can`} loading="lazy" width={240} height={474} className="can-mask anim-copy-in mt-10 hidden h-64 w-auto md:block" />
         </Reveal>
         <Reveal d={0.1}>
           <form onSubmit={submit} className="glass grid gap-5 rounded-3xl p-6 sm:p-8">
@@ -171,7 +171,7 @@ export function Order({ index, onPick }: { index: number; onPick: (i: number) =>
               <label className="grid gap-2 text-xs uppercase tracking-widest text-mute">Phone or email<input name="contact" required maxLength={120} className={field} /></label>
             </div>
             <label className="grid gap-2 text-xs uppercase tracking-widest text-mute">Notes<textarea name="notes" rows={3} maxLength={500} className={field} /></label>
-            <button type="submit" className="btn-flavor py-4 text-sm">Send order — {qty} × {FLAVORS[index].name}</button>
+            <button type="submit" className="btn-flavor py-4 text-sm">Send order — {qty} × {FLAVORS[index]!.name}</button>
           </form>
         </Reveal>
       </div>

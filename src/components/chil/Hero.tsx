@@ -17,7 +17,7 @@ export function Hero({ index, onChange, onOrder }: { index: number; onChange: (i
   const busy = useRef(false);
   const tilt = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLElement>(null);
-  const f = FLAVORS[shown];
+  const f = FLAVORS[shown]!;
 
   const goTo = useCallback((to: number) => {
     to = wrap(to);
@@ -54,9 +54,9 @@ export function Hero({ index, onChange, onOrder }: { index: number; onChange: (i
 
   // swipe
   const sx = useRef<number | null>(null);
-  const onTouchStart = (e: React.TouchEvent) => { sx.current = e.touches[0].clientX; setPaused(true); };
+  const onTouchStart = (e: React.TouchEvent) => { sx.current = e.touches[0]!.clientX; setPaused(true); };
   const onTouchEnd = (e: React.TouchEvent) => {
-    if (sx.current !== null) { const dx = e.changedTouches[0].clientX - sx.current; if (Math.abs(dx) > 50) goTo(shown + (dx < 0 ? 1 : -1)); }
+    if (sx.current !== null) { const dx = e.changedTouches[0]!.clientX - sx.current; if (Math.abs(dx) > 50) goTo(shown + (dx < 0 ? 1 : -1)); }
     sx.current = null; setTimeout(() => setPaused(false), 4000);
   };
 
@@ -185,7 +185,7 @@ export function Hero({ index, onChange, onOrder }: { index: number; onChange: (i
 }
 
 function Fruits({ shown, out, layer }: { shown: number; out: boolean; layer: "front" | "back" }) {
-  const f = FLAVORS[shown];
+  const f = FLAVORS[shown]!;
   return (
     <div aria-hidden className={`pointer-events-none absolute inset-0 ${layer === "front" ? "z-[17]" : "z-[5]"}`}>
       {FRUIT_SLOTS.map((s, j) => {

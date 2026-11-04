@@ -25,7 +25,7 @@ export function Particles({ burstKey, dir, color }: { burstKey: number; dir: num
     };
     resize();
     const ro = new ResizeObserver(resize); ro.observe(cv);
-    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; if (visible && !raf) loop(); });
+    const io = new IntersectionObserver(([e]) => e && { visible = e.isIntersecting; if (visible && !raf) loop(); });
     io.observe(cv);
     function loop() {
       raf = 0;
@@ -33,7 +33,7 @@ export function Particles({ burstKey, dir, color }: { burstKey: number; dir: num
       ctx.clearRect(0, 0, W, H);
       const arr = parts.current;
       for (let i = arr.length - 1; i >= 0; i--) {
-        const p = arr[i];
+        const p = arr[i]!;
         if (p.burst) { p.x += p.vx; p.y += p.vy; p.vx *= 0.97; p.vy *= 0.97; p.life -= 0.012; if (p.life <= 0) { arr.splice(i, 1); continue; } ctx.globalAlpha = p.life; ctx.fillStyle = colorRef.current; }
         else { p.y += p.vy; p.x += Math.sin(p.y / 50) * 0.25; if (p.y > H) { p.y = -4; p.x = Math.random() * W; } ctx.globalAlpha = 0.5; ctx.fillStyle = "rgba(255,255,255,1)"; }
         ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
