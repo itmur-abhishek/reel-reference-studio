@@ -189,10 +189,10 @@ body { font-family: var(--font-sans); overflow-x: hidden; }
   radial-gradient(ellipse 26% 40% at 50% 46%, color-mix(in oklab, var(--flavor) 85%, white 5%), transparent 70%),
   radial-gradient(ellipse 55% 60% at 50% 50%, color-mix(in oklab, var(--flavor) 35%, transparent), transparent 75%),
   var(--night); }
-.hero-rocks { -webkit-mask-image: linear-gradient(transparent, #000 30%); mask-image: linear-gradient(transparent, #000 30%); }
-.hero-rocks-tint { background: linear-gradient(to top, transparent 10%, color-mix(in oklab, var(--flavor) 55%, transparent)); mix-blend-mode: color; }
+.hero-rocks { -webkit-mask-image: linear-gradient(transparent, #000 25%); mask-image: linear-gradient(transparent, #000 25%); }
+.hero-rocks-tint { background: linear-gradient(to top, transparent 20%, color-mix(in oklab, var(--flavor) 45%, transparent)); mix-blend-mode: multiply; -webkit-mask-image: linear-gradient(transparent, #000 25%); mask-image: linear-gradient(transparent, #000 25%); }
 .hero-vignette { background: radial-gradient(ellipse at 50% 45%, transparent 45%, oklch(0 0 0 / 70%)); }
-.ghost-text { color: transparent; -webkit-text-stroke: 1px oklch(1 0 0 / 14%); background: linear-gradient(90deg, oklch(1 0 0 / 3%), oklch(1 0 0 / 12%), oklch(1 0 0 / 3%)); -webkit-background-clip: text; background-clip: text; }
+.ghost-text { color: transparent; background: linear-gradient(90deg, oklch(1 0 0 / 2%), color-mix(in oklab, var(--flavor) 22%, oklch(1 0 0 / 10%)), oklch(1 0 0 / 2%)); -webkit-background-clip: text; background-clip: text; }
 .can-shadow { background: radial-gradient(ellipse, oklch(0 0 0 / 80%), transparent 70%); }
 .can-shine { background: linear-gradient(100deg, transparent 30%, oklch(1 0 0 / 22%) 45%, transparent 55%); mix-blend-mode: overlay; }
 .can-mask { -webkit-mask-image: linear-gradient(#000 88%, transparent); mask-image: linear-gradient(#000 88%, transparent); }

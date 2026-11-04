@@ -96,14 +96,14 @@ export function Hero({ index, onChange, onOrder }: { index: number; onChange: (i
       <Fruits shown={shown} out={o} layer="back" />
 
       {/* can */}
-      <div className="absolute bottom-[19%] left-1/2 z-10 -translate-x-1/2 sm:bottom-[16%]">
+      <div className="absolute bottom-[24%] left-1/2 z-10 -translate-x-1/2 sm:bottom-[13%]">
         <div aria-hidden className="can-shadow absolute -bottom-6 left-1/2 h-10 w-[140%] -translate-x-1/2" />
         <div key={`c${shown}`} className={o ? "anim-can-out" : "anim-can-in"}>
           <div className="can-bob">
             <div ref={tilt} className="relative transition-transform duration-300 ease-out"
               style={{ transform: "perspective(900px) rotateY(calc(var(--mx) * 22deg)) rotateX(calc(var(--my) * -10deg))" }}>
               <img src={f.can} alt={`Chíl by Penguin ${f.name} sparkling beverage can`} width={240} height={474}
-                className="can-mask block h-[min(50svh,460px)] w-auto drop-shadow-[0_40px_60px_oklch(0_0_0/0.6)]" />
+                className="can-mask block h-[min(36svh,320px)] sm:h-[min(54svh,480px)] w-auto drop-shadow-[0_40px_60px_oklch(0_0_0/0.6)]" />
               <div aria-hidden className="can-shine can-mask pointer-events-none absolute inset-0" />
             </div>
           </div>
@@ -114,7 +114,7 @@ export function Hero({ index, onChange, onOrder }: { index: number; onChange: (i
       <Fruits shown={shown} out={o} layer="front" />
 
       {/* rocky ground */}
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[15] h-[42%]">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 z-[8] h-[46%] mix-blend-screen">
         <div key={`r${burst}`} className={`absolute -inset-x-[4%] inset-y-0 ${burst ? "anim-rocks" : ""}`}
           style={{ transform: "translateX(calc(var(--mx) * -14px))" }}>
           <img src={rocks} alt="" width={1920} height={768} className="hero-rocks h-full w-full object-cover object-bottom" />
@@ -153,7 +153,7 @@ export function Hero({ index, onChange, onOrder }: { index: number; onChange: (i
       </div>
 
       {/* right copy */}
-      <div className="absolute bottom-[23%] left-6 right-6 z-30 text-center sm:bottom-auto sm:left-auto sm:right-10 sm:top-[38%] sm:max-w-[260px] sm:text-right">
+      <div className="absolute bottom-[12%] left-6 right-6 z-30 text-center sm:bottom-auto sm:left-auto sm:right-10 sm:top-[38%] sm:max-w-[260px] sm:text-right">
         <div key={`d${shown}`} className={o ? "anim-copy-out" : "anim-copy-in"} style={{ "--d": ".5s" } as CSSProperties}>
           <p className="text-flavor-glow mb-2 text-xs font-bold uppercase tracking-[0.2em]">{f.name}</p>
           <p className="text-sm leading-relaxed text-ink/85">{f.description}</p>
